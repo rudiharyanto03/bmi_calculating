@@ -87,7 +87,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
               style: TextStyle(fontSize: 18),
             ),
             ListTile(
-              title: const Text('Wanita'),
+              title: const Text('Wanita (Female)'),
               leading: Radio<String>(
                 value: 'Wanita',
                 groupValue: _selectedGender,
@@ -99,7 +99,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
               ),
             ),
             ListTile(
-              title: const Text('Pria'),
+              title: const Text('Pria (Male)'),
               leading: Radio<String>(
                 value: 'Pria',
                 groupValue: _selectedGender,
