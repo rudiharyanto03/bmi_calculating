@@ -5,7 +5,7 @@ class BMICalculatorScreen extends StatefulWidget {
   final String gender;
   final DateTime birthDate;
 
-  BMICalculatorScreen({required this.gender, required this.birthDate});
+  const BMICalculatorScreen({super.key, required this.gender, required this.birthDate});
 
   @override
   _BMICalculatorScreenState createState() => _BMICalculatorScreenState();
@@ -72,7 +72,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambah Berat Badan'),
+        title: const Text('Tambah Berat Badan'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,11 +80,10 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              // Berat Badan (Kg)
               TextFormField(
                 controller: _weightController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration: const InputDecoration(
                   labelText: 'Berat Badan (Kg)',
                   border: OutlineInputBorder(),
                 ),
@@ -92,17 +91,14 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your weight';
                   }
-                  // Validasi maksimal 3 digit dan desimal
                   return _validateDecimal(value, 3);
                 },
               ),
-              SizedBox(height: 16),
-
-// Tinggi Badan (Cm)
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _heightController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration: const InputDecoration(
                   labelText: 'Tinggi Badan (Cm)',
                   border: OutlineInputBorder(),
                 ),
@@ -110,35 +106,29 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your height';
                   }
-                  // Validasi maksimal 3 digit dan desimal
                   return _validateDecimal(value, 3);
                 },
               ),
-              SizedBox(height: 16),
-
-// Body Fat (%)
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _bodyFatController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration: const InputDecoration(
                   labelText: 'Body Fat (%)',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
-                    // Validasi maksimal 2 digit dan desimal
                     return _validateDecimal(value, 2);
                   }
-                  return null; // Field ini opsional
+                  return null;
                 },
               ),
-              SizedBox(height: 16),
-
-// Muscle Mass (Kg)
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _muscleMassController,
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                decoration: const InputDecoration(
                   labelText: 'Muscle Mass (Kg)',
                   border: OutlineInputBorder(),
                 ),
@@ -150,13 +140,11 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                   return null; // Field ini opsional
                 },
               ),
-              SizedBox(height: 16),
-
-// Visceral Fat
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _visceralFatController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Visceral Fat (1-12)',
                   border: OutlineInputBorder(),
                 ),
@@ -167,34 +155,28 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                   return null; // Field ini opsional
                 },
               ),
-              SizedBox(height: 16),
-
-// Basal Metabolism (Kcal)
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _basalMetabolismController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Basal Metabolism (Kcal)',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
-                    // Validasi maksimal 4 digit
                     final regex = RegExp(r'^\d{1,4}$');
                     if (!regex.hasMatch(value)) {
                       return 'Must be a valid number with max 4 digits';
                     }
                   }
-                  return null; // Field ini opsional
+                  return null;
                 },
               ),
-
-              SizedBox(height: 16),
-
-              // Tombol submit
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _submitForm,
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
             ],
           ),
