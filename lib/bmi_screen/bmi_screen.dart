@@ -5,7 +5,8 @@ class BMICalculatorScreen extends StatefulWidget {
   final String gender;
   final DateTime birthDate;
 
-  const BMICalculatorScreen({super.key, required this.gender, required this.birthDate});
+  const BMICalculatorScreen(
+      {super.key, required this.gender, required this.birthDate});
 
   @override
   _BMICalculatorScreenState createState() => _BMICalculatorScreenState();
@@ -24,8 +25,11 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   // Fungsi validasi angka desimal dengan jumlah digit maksimal
   String? _validateDecimal(String value, int maxDigits) {
     final regex = RegExp(r'^\d{1,' + maxDigits.toString() + r'}(\.\d{0,1})?$');
-    if (!regex.hasMatch(value)) {
-      return 'Invalid input';
+    if (!regex.hasMatch(value) && maxDigits == 2) {
+      return 'Invalid input maks 2 digits';
+    }
+    if (!regex.hasMatch(value) && maxDigits == 3) {
+      return 'Invalid input maks 3 digit';
     }
     return null;
   }
@@ -72,7 +76,12 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Berat Badan'),
+        title: const Text(
+          'Tambah Berat Badan',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.purpleAccent,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -82,7 +91,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
             children: [
               TextFormField(
                 controller: _weightController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
                   labelText: 'Berat Badan (Kg)',
                   border: OutlineInputBorder(),
@@ -97,7 +107,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _heightController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
                   labelText: 'Tinggi Badan (Cm)',
                   border: OutlineInputBorder(),
@@ -112,7 +123,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _bodyFatController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
                   labelText: 'Body Fat (%)',
                   border: OutlineInputBorder(),
@@ -127,7 +139,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _muscleMassController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: const InputDecoration(
                   labelText: 'Muscle Mass (Kg)',
                   border: OutlineInputBorder(),

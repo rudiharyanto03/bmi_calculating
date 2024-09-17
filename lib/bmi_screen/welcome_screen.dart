@@ -2,31 +2,37 @@ import 'package:bmi_calculator/bmi_screen/bmi_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome'),
+        title: const Text(
+          'Welcome',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.purpleAccent,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Welcome to the Scale App, your personal health tracker!',
               style: TextStyle(fontSize: 24),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GenderSelectionPage()),
+                      builder: (context) => const GenderSelectionPage()),
                 );
               },
-              child: Text('Get Started'),
+              child: const Text('Get Started'),
             ),
           ],
         ),
@@ -36,6 +42,8 @@ class WelcomePage extends StatelessWidget {
 }
 
 class GenderSelectionPage extends StatefulWidget {
+  const GenderSelectionPage({super.key});
+
   @override
   _GenderSelectionPageState createState() => _GenderSelectionPageState();
 }
@@ -53,7 +61,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a gender.')),
+        const SnackBar(content: Text('Please select a gender.')),
       );
     }
   }
@@ -62,13 +70,19 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Gender'),
+        title: const Text(
+          'Select Gender',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.purpleAccent,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Please select your gender:',
               style: TextStyle(fontSize: 18),
             ),
@@ -96,10 +110,10 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _continueToDateOfBirth,
-              child: Text('Next'),
+              child: const Text('Next'),
             ),
           ],
         ),
@@ -111,7 +125,7 @@ class _GenderSelectionPageState extends State<GenderSelectionPage> {
 class DateOfBirthPage extends StatefulWidget {
   final String gender;
 
-  DateOfBirthPage({required this.gender});
+  const DateOfBirthPage({super.key, required this.gender});
 
   @override
   _DateOfBirthPageState createState() => _DateOfBirthPageState();
@@ -127,10 +141,11 @@ class _DateOfBirthPageState extends State<DateOfBirthPage> {
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != _selectedDate)
+    if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
       });
+    }
   }
 
   void _continueToWeightForm() {
@@ -146,7 +161,7 @@ class _DateOfBirthPageState extends State<DateOfBirthPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a valid date of birth.')),
+        const SnackBar(content: Text('Please select a valid date of birth.')),
       );
     }
   }
@@ -155,31 +170,37 @@ class _DateOfBirthPageState extends State<DateOfBirthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Date of Birth'),
+        title: const Text(
+          'Date of Birth',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.purpleAccent,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Please select your date of birth:',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               _selectedDate == null
                   ? 'No date selected'
                   : 'Selected Date: ${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _selectDate(context),
-              child: Text('Select Date'),
+              child: const Text('Select Date'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _continueToWeightForm,
-              child: Text('Next'),
+              child: const Text('Next'),
             ),
           ],
         ),

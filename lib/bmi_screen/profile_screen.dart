@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-
 class ProfilePage extends StatelessWidget {
   final String gender;
   final DateTime birthDate;
@@ -12,7 +11,8 @@ class ProfilePage extends StatelessWidget {
   final int? visceralFat;
   final int? basalMetabolism;
 
-  ProfilePage({
+  const ProfilePage({
+    super.key,
     required this.gender,
     required this.birthDate,
     required this.weight,
@@ -23,9 +23,8 @@ class ProfilePage extends StatelessWidget {
     this.basalMetabolism,
   });
 
-  // Fungsi untuk menghitung BMI
   double calculateBMI() {
-    return weight / ((height / 100) * (height / 100)); // Tinggi diubah ke meter
+    return weight / ((height / 100) * (height / 100));
   }
 
   // Fungsi untuk mendapatkan kategori BMI
@@ -48,18 +47,22 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Overview'),
+        title: const Text(
+          'Profile Overview',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.purpleAccent,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // Menampilkan informasi pengguna
-            Text(
+            const Text(
               'Profile Information',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('Gender: $gender'),
             Text(
                 'Birth Date: ${birthDate.day}/${birthDate.month}/${birthDate.year}'),
@@ -72,25 +75,20 @@ class ProfilePage extends StatelessWidget {
             if (visceralFat != null) Text('Visceral Fat: $visceralFat'),
             if (basalMetabolism != null)
               Text('Basal Metabolism: $basalMetabolism kcal'),
-            SizedBox(height: 24),
-
-            // Menampilkan hasil BMI
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               'BMI Result',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text('BMI: ${bmi.toStringAsFixed(2)} ($bmiCategory)',
-                style: TextStyle(fontSize: 18)),
-
-            SizedBox(height: 24),
-
-            // Visualisasi BMI dengan grafik
-            Text(
+                style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 24),
+            const Text(
               'BMI Graph',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             SfCartesianChart(
               primaryXAxis: CategoryAxis(),
               title: ChartTitle(text: 'BMI Categories'),
@@ -108,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                   pointColorMapper: (ChartData data, _) => data.color,
                   xValueMapper: (ChartData data, _) => data.category,
                   yValueMapper: (ChartData data, _) => data.value,
-                  dataLabelSettings: DataLabelSettings(isVisible: true),
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
                 ),
               ],
             ),
@@ -119,7 +117,6 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-// Model untuk data grafik
 class ChartData {
   final String category;
   final double value;
