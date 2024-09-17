@@ -22,7 +22,6 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   final TextEditingController _basalMetabolismController =
       TextEditingController();
 
-  // Fungsi validasi angka desimal dengan jumlah digit maksimal
   String? _validateDecimal(String value, int maxDigits) {
     final regex = RegExp(r'^\d{1,' + maxDigits.toString() + r'}(\.\d{0,1})?$');
     if (!regex.hasMatch(value) && maxDigits == 2) {
@@ -34,7 +33,6 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
     return null;
   }
 
-  // Fungsi validasi nilai lemak viseral (1-12)
   String? _validateVisceralFat(String value) {
     final visceralFat = int.tryParse(value);
     if (visceralFat == null || visceralFat < 1 || visceralFat > 12) {
@@ -43,7 +41,6 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
     return null;
   }
 
-  // Fungsi untuk mengarahkan pengguna ke halaman profil setelah validasi
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       Navigator.push(
@@ -147,10 +144,9 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                 ),
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
-                    // Validasi maksimal 2 digit dan desimal
                     return _validateDecimal(value, 2);
                   }
-                  return null; // Field ini opsional
+                  return null;
                 },
               ),
               const SizedBox(height: 16),
@@ -165,7 +161,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                   if (value != null && value.isNotEmpty) {
                     return _validateVisceralFat(value);
                   }
-                  return null; // Field ini opsional
+                  return null;
                 },
               ),
               const SizedBox(height: 16),

@@ -27,7 +27,6 @@ class ProfilePage extends StatelessWidget {
     return weight / ((height / 100) * (height / 100));
   }
 
-  // Fungsi untuk mendapatkan kategori BMI
   String getBMICategory(double bmi) {
     if (bmi < 18.5) {
       return 'Underweight';
@@ -100,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                     ChartData('Underweight', 18.5, Colors.blue),
                     ChartData('Normal', 24.9, Colors.green),
                     ChartData('Overweight', 29.9, Colors.orange),
-                    ChartData('Obesity', 40, Colors.red), // Nilai batas Obesity
+                    ChartData('Obesity', 40, Colors.red),
                     ChartData('Your BMI', bmi, Colors.purple),
                   ],
                   pointColorMapper: (ChartData data, _) => data.color,
